@@ -13,7 +13,7 @@ var app = express();
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'images');
+    cb(null, './public/images');
   },
   filename: (req, file, cb) => {
     cb(null, new Date().toISOString() + '-' + file.originalname);
@@ -49,6 +49,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+var mongoose=require('mongoose');
+mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb://localhost:27017/Ecommerce',{ useNewUrlParser: true });
+console.log('db connected')
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

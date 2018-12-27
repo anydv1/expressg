@@ -32,33 +32,37 @@
 <div class="form control">
 
     <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required>
+    <input type="text" placeholder="Enter Name" name="name" id="name" required>
 </div>
 <br/>
 <div class="form control">
 
 <label for="email"><b>Email</b></label>
-<input type="text" placeholder="Enter Email" name="email" required>
+<input type="text" placeholder="Enter Email" name="email" id="email" required>
 </div>
 <br/>
 <div class="form control">
 
 <label for="psw"><b>Password</b></label>
-<input type="password" placeholder="Enter Password" name="psw" required>
+<input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 </div>
 <br/>
 <div class="form control">
 
 <label for="psw-repeat"><b>Confirm Password</b></label>
-<input type="password" placeholder="Confirm Password" name="pswcnfrm" >
+<input type="password" placeholder="Confirm Password" name="pswcnfrm" id="pswcnfrm" >
 </div>
 
 <div class="clearfix">
-  <button type="submit" class="btn">Sign Up</button>
+  <button type="submit" class="btn" onclick ="adminsign()">Sign Up</button>
 </div>
 </div>
 </form>
 </main>
 
   </body>
+  <script src = "../javascripts/adminsignup.js"> </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
 </html>
