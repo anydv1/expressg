@@ -22,12 +22,12 @@ description:{
 type:String,
 required:true
 
+  },
+ userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
-// userId: {
-//     type: Schema.Types.ObjectId,
-//     ref: 'User',
-//     required: true
-//   }
 });
 var product = mongoose.model('Product', productSchema)
 module.exports = product;

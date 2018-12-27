@@ -16,9 +16,8 @@ function addproducts() {
            description : description
       })
       .then(function (res) {
-        //fetchdatabase();
-
-        console.log('----------',res)
+       fetchdatabase();
+console.log('----------',res);
           });
     
 }

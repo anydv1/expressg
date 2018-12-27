@@ -31,23 +31,27 @@
 <div class="form control">
 
 <label for="email"><b>Email</b></label>
-<input type="text" placeholder="Enter Email" name="email" required>
+<input type="text" placeholder="Enter Email" name="email" id="email" required>
 </div>
 <br/>
 <div class="form control">
 
 <label for="psw"><b>Password</b></label>
-<input type="password" placeholder="Enter Password" name="psw" required>
+<input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 </div>
 <br/>
 
 
 <div class="clearfix">
-  <button type="submit" class="btn">Log in</button>
+  <button type="button" class="btn" onclick="adminlogin()">Log in</button>
 </div>
 </div>
 </form>
 </main>
 
   </body>
+  <script src = "../javascripts/adminauth.js"> </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
 </html>

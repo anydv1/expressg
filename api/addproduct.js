@@ -10,15 +10,17 @@ addProduct=(req, res) =>{
     description: req.body.description
 						
 	})
-	product.save(function(err, doc){
-		if(err) return res.json(err);
-		else  {
+    return product.save();
+    
+    // (function(err, doc){
+	// 	if(err) return res.json(err);
+	// 	else  {
 
 
-			return res.json({status:'true',doc:doc,mess:'Successfully added!'});
+	// 		return res.json({status:'true',doc:doc,mess:'Successfully added!'});
 
-		}  
-	});
+	// 	}  
+	// });
 }
 
 module.exports = { addProduct };
