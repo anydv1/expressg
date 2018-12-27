@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  </head>
+
+
+  <body>
+    
+    <div class="nav">
+        
+      <ul>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="products">Products</a></li>
+            <li><a href="/users/login">Login</a></li>
+            <li><a href="/users/signup">Signup</a></li>
+            <li><a href="/admin/signup">Admin Signup</a></li>
+
+            <li><a href="/admin">Admin</a></li>
+      </ul>
+      </div>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <main>
+<form action="/admin/signup" method="post">
+<div class="form control">
+<h1>Sign Up</h1>
+<p>Please fill in this form to create an account.</p>
+<hr>
+</div>
+<div class="form control">
+
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+</div>
+<br/>
+<div class="form control">
+
+<label for="email"><b>Email</b></label>
+<input type="text" placeholder="Enter Email" name="email" required>
+</div>
+<br/>
+<div class="form control">
+
+<label for="psw"><b>Password</b></label>
+<input type="password" placeholder="Enter Password" name="psw" required>
+</div>
+<br/>
+<div class="form control">
+
+<label for="psw-repeat"><b>Confirm Password</b></label>
+<input type="password" placeholder="Confirm Password" name="pswcnfrm" >
+</div>
+
+<div class="clearfix">
+  <button type="submit" class="btn">Sign Up</button>
+</div>
+</div>
+</form>
+</main>
+
+  </body>
+</html>
