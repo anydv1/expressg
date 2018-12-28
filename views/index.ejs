@@ -11,22 +11,14 @@
 
   <body >
     
-    <div class="nav">
-        
-      <ul>
-         <li><a href="/shop">Shop</a></li>
-         <li><a href="/login">Login</a></li>
-         <li><a href="/signup">Signup</a></li>
-         <li><a href="/admin">Admin</a></li>
+        <%- include('./includes/navigation.ejs') %>
 
-      </ul>
-      </div>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <main >
         <main>
             <% if (prods.length > 0) { %>
-                <div class="grid"  style="height:200px; width:400px ;border: 2px red solid">
+                <div class="grid">
                     <% for (let product of prods) { %>
                         <article class="card product-item">
                             <header class="card__header">

@@ -3,45 +3,42 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/new.css' />
+
 
   </head>
 
 
   <body>
-    
-    <div class="nav">
-        
-      <ul>
-            <li><a href="/shop">Shop</a></li>
-            <li><a href="/admin/add-product">Add product</a></li>
-            <li><a href="/admin/signup">Admin Signup</a></li>
-             <li><a href="/admin/login">Admin Login</a></li>
-
-      </ul>
-      </div>
-    <h1><%= title %></h1>
+      <%- include('../includes/adminnav.ejs') %>
+   
+   
     <p>Welcome to <%= title %></p>
     <main>
-            <form class="product-form">
-                <div class="form-control">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" id="title" >
+       
+        <form class="product-form" enctype="multipart/form-data">
+              
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" >
+            </div>
+            <div class="form-control">
+                    <label for="image">Image</label>
+                 <input type="file" name="image" id="image"  >
                 </div>
-                <div class="form-control">
-                        <label for="image">Image</label>
-                     <input type="file" name="image" id="image" >
-                    </div>
-                <div class="form-control">
-                    <label for="price">Price</label>
-                    <input type="number" name="price" id="price"  >
-                </div>
-                <div class="form-control">
-                    <label for="description">Description</label>
-                    <textarea name="description" id="description" rows="5"></textarea>
-                </div>
-              <button class="btn" type="button" onclick="addproducts()"> Add Product  </button>
-            </form>
-    </main>
+            <div class="form-control">
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price"  >
+            </div>
+            <div class="form-control">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" rows="5"> </textarea>
+            </div>
+          <button class="btn" type="button" onclick="addproducts()""> Add Product </button>
+    
+        </form>
+      
+</main>
   </body>
   <script src = "../javascripts/addproduct.js"> </script>
 

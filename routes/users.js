@@ -10,8 +10,8 @@ router.get('/users/login', function(req, res, next) {
 // });
 
 
-router.get('/users/signup', function(req, res, next) {
-  res.render('/signup', { title: 'New User Registration' });
+router.get('/signup', function(req, res, next) {
+  res.render('usersignup', { title: 'New User Registration' });
 
 });
 

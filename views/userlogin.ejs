@@ -9,10 +9,9 @@
 
   <body>
     
-      <%- include('../includes/adminnav.ejs') %>
-     
+        <%- include('./includes/navigation.ejs') %>
 
-
+    <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <main>
 <form action="/admin/login" method="post">
@@ -36,7 +35,7 @@
 
 
 <div class="clearfix">
-  <button type="button" class="btn" onclick="adminlogin()">Log in</button>
+  <button type="button" class="btn" onclick="userlogin()">Log in</button>
 </div>
 </div>
 </form>

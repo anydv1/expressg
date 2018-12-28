@@ -42,6 +42,7 @@ a {
   display: block;
   width: 100%;
   margin-bottom: 0.25rem;
+  box-sizing:border-box;
 }
 
 .form-control input,
