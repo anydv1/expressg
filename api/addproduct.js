@@ -8,7 +8,7 @@ addProduct=(req, res) =>{
 	
     title: req.body.title,
 	image    : req.body.image,
-    price: req.body.price,
+    price: req.file,
 	description: req.body.description
 						
 	})

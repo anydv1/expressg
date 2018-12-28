@@ -8,13 +8,19 @@ var adminsignapi = require('../api/adminsignup');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'My Shop' });
+  Product.find(function(err,docs){
+    console.log('111111111', docs.length);
+    res.render('index', { title: 'My Shop' ,prods  :docs});
+
+  });
+ 
 });
 
 router.get('/shop', function(req, res, next) {
-  const product=Product.find();
-  console.log('1234567891qqqq', typeof (product));
-  res.render('index', { title: 'My Shop' ,prods:product});
+  Product.find(function(err,docs){
+    console.log('111111111', docs.length);
+    res.render('index', { title: 'My Shop' ,prods  :docs});
+});
 });
 
 

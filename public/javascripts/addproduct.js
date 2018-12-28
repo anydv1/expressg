@@ -11,7 +11,7 @@ function addproducts() {
         axios.post('/admin/add-product', {
        
            title : title,
-         image  : image,
+         image  : image.file,
            price : price,
            description : description
       })
