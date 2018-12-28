@@ -3,17 +3,18 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/new.css' />
+
 
   </head>
 
 
-  <body>
+  <body >
     
     <div class="nav">
         
       <ul>
          <li><a href="/shop">Shop</a></li>
-         <li><a href="/products">Products</a></li>
          <li><a href="/login">Login</a></li>
          <li><a href="/signup">Signup</a></li>
          <li><a href="/admin">Admin</a></li>
@@ -22,16 +23,34 @@
       </div>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <main>
+    <main >
+        <main>
+            <!-- <% if (prods.length > 0) { %> -->
+                <div class="grid">
+                        <% for (i=0,i<=prods.length,i++) { %>
 
-    <div class="box" styel="height:400px width:30% padding:400px">
-       <div class="product_title"> </div>
-       <div class="image_url"></div>
-       <div class="product_price"> </div>
-       <div class="iproduct__descriptionl"> </div>
-
-    </div>
-    </main>
+                        <article class="card product-item">
+                            <header class="card__header">
+                                <h1 class="product__title"><%= prods[i].title %></h1>
+                            </header>
+                            <div class="card__image">
+                                <img src="/<%= prods[i].image %>"
+                                    alt="<%= prods[i].title %>">
+                            </div>
+                            <div class="card__content">
+                                <h2 class="product__price"> $<%= prods[i].price%></h2>
+                                <p class="product__description"><%= prods[i].description%></p>
+                            </div>
+                  
+                        </article>
+                    <% } %>
+                </div>
+               
+            <!-- <% } else { %>
+                <h1>No Products Found!</h1>
+            <% } %> -->
+        </main>
 
   </body>
+
 </html>

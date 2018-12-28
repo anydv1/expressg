@@ -1,6 +1,9 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+
+const session = require('express-session');
+
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const multer = require('multer');
@@ -10,6 +13,21 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+const MONGO_URL = 'mongodb://localhost:27017/Ecommerce';
+
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
+
+const store = new MongoDBStore({
+  uri: MONGO_URL,
+  collection: 'sessions'
+});
+
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -46,6 +64,9 @@ app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
 );
 app.use(express.static(path.join(__dirname, 'public')));
+app.use
+     (session({secret: 'secret',resave:false,saveUninitialized:false, store: store})
+);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -53,8 +74,18 @@ app.use('/users', usersRouter);
 var mongoose=require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/Ecommerce',{ useNewUrlParser: true });
-console.log('db connected')
+mongoose
+  .connect(MONGO_URL,{useNewUrlParser:true})
+  .then(result => {
+    // app.listen(3000);
+    console.log('connected')
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+// mongoose.connect('mongodb://localhost:27017/Ecommerce',{ useNewUrlParser: true });
+// console.log('db connected')
 
 
 // catch 404 and forward to error handler

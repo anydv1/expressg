@@ -3,19 +3,25 @@ var router = express.Router();
 const User = require('../models/user');
 const Product = require('../models/product');
 var addapi = require('../api/addproduct');
+var fetchapi = require('../api/fetchproduct');
 var adminsignapi = require('../api/adminsignup');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'My Shop' });
 });
 
-
-router.get('/products', function(req, res, next) {
-  res.render('index', { title: 'Products' });
+router.get('/shop', function(req, res, next) {
+  const product=Product.find();
+  console.log('1234567891qqqq', typeof (product));
+  res.render('index', { title: 'My Shop' ,prods:product});
 });
+
+
 router.get('/admin', function(req, res, next) {
   res.render('admin',{ title: 'admin' });
 });
+
 router.get('/admin/signup', function(req, res, next) {
   res.render('./admin/signup', { title: 'Admin Registration' });
 });

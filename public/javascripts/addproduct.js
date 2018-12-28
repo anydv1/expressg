@@ -5,7 +5,7 @@ function addproducts() {
       var image = document.getElementById("image").value;
     var price = document.getElementById("price").value;
     var description=document.getElementById("description").value;
-       console.log('123456ty7uioo',title,image,price,description);
+      //  console.log('123456ty7uioo',title,image,price,description);
       //  axios.defaults.headers.common['authorization'] = 'Bearer ' + localStorage.getItem('jwtToken');
         
         axios.post('/admin/add-product', {
@@ -16,8 +16,12 @@ function addproducts() {
            description : description
       })
       .then(function (res) {
-       fetchdatabase();
-console.log('----------',res);
+
+        console.log('----------',res);
+      
+      window.location='/shop'
+
+
           });
     
 }
