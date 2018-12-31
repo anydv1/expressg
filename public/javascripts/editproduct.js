@@ -3,7 +3,7 @@ function editproduct() {
     var updatedimage = document.getElementById("image").value;
   var updatedprice = document.getElementById("price").value;
   var updateddescription=document.getElementById("description").value;
-console.log('yuhghuhujhhkk',updatedtitle);
+
 
   axios.post('/admin/edit-product', {
     title : updatedtitle,

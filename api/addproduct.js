@@ -7,7 +7,8 @@ addProduct=(req, res) =>{
 	title: req.body.title,
 	image    : req.file,
     price: req.body.price,
-	description: req.body.description
+	description: req.body.description,
+	isAuthenticated:req.session.isLoogedin
 						
 	})
 	// upload(req,res,(err) =>{

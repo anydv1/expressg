@@ -1,6 +1,7 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
   background:#ecf0f1;
+
 }
 
 a {
@@ -24,13 +25,13 @@ a {
 
 .nav li { margin-right: 0px; display: inline; }
 
-.nav ul li a { text-decoration:none;  margin: 0px; padding: 15px 20px 15px 20px; color:#d8eb33; }
+.nav ul li a { text-decoration:none;  margin: 0px; padding: 15px 20px 15px 20px; color:#eeeb2b; }
 
-/* .nav ul li a:hover { color: #fff; background-color:#27ae60; text-decoration:none; } */
+ .nav ul li a:hover { color: #fff; background-color:#27ae60; text-decoration:none; } */
 
-.nav li.current-menu-item a{ color: #fff; text-decoration:none; background-color:#27ae60; }
+.nav li.current-menu-item a{ color: rgb(63, 24, 24); text-decoration:none; background-color:#d6c31a; }
 
-.nav li.current_page_item { color: #fff; text-decoration:none; background-color:#27ae60; }
+.nav li.current_page_item { color: rgb(235, 69, 69); text-decoration:none; background-color:#e2e620; }
 
 .form-control {
   margin: 1rem 0;

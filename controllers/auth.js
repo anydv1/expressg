@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 
-const Contact = require('../models/product');
+const Product = require('../models/product');
 const Usershop = require('../models/shopuser');
 
 const mongoose = require('mongoose');
@@ -42,7 +42,7 @@ exports.getSignup = (req, res, next) => {
         req.session.user = user;
         return req.session.save(err => {
           console.log(err);
-          res.redirect('/');
+          res.redirect('/shop');
         });
       }
       res.redirect('/login');
@@ -88,3 +88,33 @@ exports.getSignup = (req, res, next) => {
   };
 
   
+
+  exports.postLogout=(req,res,next)  =>{
+      req.session.destroy(err => {
+        console.log('DELETED PRODUCT!');
+        console.log(err);
+        res.redirect('/login');
+      });
+    };
+
+
+
+    // exports.postDelete=(req,res,next) => {
+    //   const prodId= req.body.productId
+    //   Product.findByIdAndRemove(prodID)
+    //   console.log('removed');
+    // }
+
+
+
+
+    exports.postDelete = (req, res, next) => {
+      const prodId = req.body.productId;
+      Product.findByIdAndRemove(prodId)
+        .then(() => {
+          console.log('DESTROYED PRODUCT');
+          res.redirect('/products');
+        })
+        .catch(err => console.log(err));
+    };
+    

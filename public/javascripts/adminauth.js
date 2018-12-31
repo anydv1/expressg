@@ -56,11 +56,12 @@ function  adminlogin(){
     
                if (typeof(Storage) !== "undefined") 
                {
+                localStorage.setItem("jwtToken", res.data.token);
                   window.location = '/admin/add-product'
                }
           
      }).catch((e)=>{
-         alert('internal server errror please try again!')
+         alert('failed');
 
      });
     }

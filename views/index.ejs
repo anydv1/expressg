@@ -15,7 +15,6 @@
 
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <main >
         <main>
             <div class="top"> 
                     <div class="leftmost">  </div>
@@ -33,16 +32,12 @@
                                 </div>
 
                             <div class="card__content">
-                                <h2 class="product__price"> <%= product.price %></h2>
+                                <h2 class="product__price"> $ <%= product.price %></h2>
                                 <p class="product__description"><%= product.description %></p>
                             </div>
                             <div class="card__actions">
-                                    <a href="/shop/add-to-cart" class="btn">Add To Cart</a>
-
-                                    <a href="/details" class="btn">Details</a>
-                                
-    
-                                </div>
+                                    <a href="/cart" class="btn"><b>Add To Cart</b></a>
+                                 </div>
                   
                         </article>
                     <% } %>

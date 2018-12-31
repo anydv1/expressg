@@ -7,12 +7,17 @@ var editapi = require('../api/editproduct');
 
 var fetchapi = require('../api/fetchproduct');
 var adminsignapi = require('../api/adminsignup');
+var adminloginapi = require('../api/adminlogin');
+
+var authcontroller = require('../controllers/auth');
+var admincontroller = require('../controllers/admin');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Product.find(function(err,docs){
     console.log('111111111', docs.length);
-    res.render('index', { title: 'My Shop' ,prods  :docs});
+    res.render('index', { title: 'My Shop' ,prods  :docs,isAuthenticated: req.session.isLoggedin});
 
   });
  
@@ -21,13 +26,24 @@ router.get('/', function(req, res, next) {
 router.get('/shop', function(req, res, next) {
   Product.find(function(err,docs){
     console.log('111111111', docs.length);
-    res.render('index', { title: 'My Shop' ,prods  :docs});
+    res.render('index', { title: 'My Shop' ,prods  :docs,isAuthenticated: req.session.isLoggedin});
+});
+});
+
+router.get('/products', function(req, res, next) {
+  Product.find(function(err,docs){
+    
+    console.log('111111111', docs.length);
+    res.render('./admin/products', { title: 'My Shop' ,prods  :docs,isAuthenticated: req.session.isLoggedin});
 });
 });
 
 
 router.get('/admin', function(req, res, next) {
-  res.render('./admin/login',{ title: 'admin' });
+  Product.find(function(err,docs){
+    console.log('111111111', docs.length);
+    res.render('./admin/products', { title: 'My Shop' ,prods  :docs,isAuthenticated: req.session.isLoggedin});
+});
 });
 
 router.get('/admin/signup', function(req, res, next) {
@@ -43,9 +59,7 @@ router.get('/admin/login', function(req, res, next) {
 router.post('/admin/signup', adminsignapi.adminSign);
 
 
-router.post('/admin/login', function(req, res, next) {
-  res.render('./admin/add-product', { title: 'Add product' });
-});
+router.post('/admin/login',adminloginapi.adminLogin);
 
 router.get('/admin/add-product',function(req, res, next) {
   res.render('./admin/add-product', { title: 'Add Product' });
@@ -56,10 +70,20 @@ router.post('/admin/add-product', addapi.addProduct );
 router.get('/admin/edit-product',function(req, res, next) {
   Product.find(function(err,docs){
     console.log('111111111', docs.length);
-  res.render('./admin/edit-product',{ title: 'Edit product' ,prods  :docs});
+  res.render('./admin/edit-product',{ title: 'Edit product' ,prods :docs});
 });
 });
 
-router.post('/admin/edit-product', editapi.editProducts );
+
+router.post('/admin/edit-product', admincontroller.posteditProducts);
+
+
+// router.get('/admin/edit-product',admincontroller.geteditProducts );
+
+
+
+
+router.post('/delete',authcontroller.postDelete );
+
 
 module.exports = router;

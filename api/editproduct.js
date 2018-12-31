@@ -7,7 +7,7 @@ editProducts=(req, res) =>{
 		var product = new Product({
 	
     title: req.body.title,
-	image    : req.file,
+	image    : req.body.image,
     price: req.body.price,
 	description: req.body.description
 						

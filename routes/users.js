@@ -31,10 +31,14 @@ router.post('/signup',authcontroller.postSignup);
 router.get('/login',authcontroller.getLogin);
  router.post('/login',authcontroller.postLogin);
 
-// router.get('/login', function(req, res, next) {
-//   res.render('userlogin', { title: 'Login into your existing account' });
+ router.post('/logout',authcontroller.postLogout);
 
-// });
+
+
+router.get('/cart', function(req, res, next) {
+  res.render('cart', { title: 'User Cart' });
+
+});
 
 
 
