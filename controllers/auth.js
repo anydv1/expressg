@@ -34,9 +34,23 @@ exports.getSignup = (req, res, next) => {
       console.log('existing email');
       return res.redirect('/login');
     }
+    bcrypt
+    .compare(psw, user.psw)
+    .then(doMatch => {
+      if (doMatch) {
+        req.session.isLoggedIn = true;
+        req.session.user = user;
+        return req.session.save(err => {
+          console.log(err);
+          res.redirect('/');
+        });
+      }
+      res.redirect('/login');
+    })
   }).catch(err => {
     console.log(err);
   });
+  
   };
 
 

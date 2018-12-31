@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const bodyParser = require('body-parser');
 
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -8,7 +9,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const multer = require('multer');
-
+const ShopUser = require('./models/shopuser');
 
 
 var indexRouter = require('./routes/index');
@@ -29,37 +30,32 @@ const store = new MongoDBStore({
 });
 
 
+
 const fileStorage = multer.diskStorage({
+  
   destination: (req, file, cb) => {
-    cb(null, '/images');
+    cb(null, 'images');
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().getTime() + '-' + file.originalname);
+    cb(null, new Date().toISOString() + '-' + file.originalname);
   }
 });
 
-// const fileStorage = multer.diskStorage({
-//   destination: '/images',
-//   filename: function (req, file, callback) {
-//     rypto.pseudoRandomBytes(16, function(err, raw) {
-//       if (err) return callback(err);
-    
-//       callback(null, raw.toString('hex') + path.extname(file.originalname));
-//     });
+// const fileFilter = (req, file, cb) => {
+//   if (
+//     file.mimetype === 'image/png' ||
+//     file.mimetype === 'image/jpg' ||
+//     file.mimetype === 'image/jpeg'
+//   ) {
+//     cb(null, true);
+//   } else {
+//     cb(null, false);
 //   }
-// });
+// };
 
-const fileFilter = (req, file, cb) => {
-  if (
-    file.mimetype === 'image/png' ||
-    file.mimetype === 'image/jpg' ||
-    file.mimetype === 'image/jpeg'
-  ) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
+app.use(multer({ storage: fileStorage }).single('image'));
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -68,12 +64,15 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cookieParser());
 // app.use(fileupload());
-app.use(
-  multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
-);
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use
@@ -87,7 +86,7 @@ app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
   }
-  User.findById(req.session.user._id)
+  ShopUser.findById(req.session.user._id)
     .then(user => {
       if (!user) {
         return next();
@@ -103,6 +102,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use( usersRouter);
+
 
 var mongoose=require('mongoose');
 mongoose.Promise = global.Promise;

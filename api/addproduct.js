@@ -5,11 +5,19 @@ addProduct=(req, res) =>{
 
 	var product = new Product({
 	title: req.body.title,
-	image    : req.body.image,
+	image    : req.file,
     price: req.body.price,
 	description: req.body.description
 						
 	})
+	// upload(req,res,(err) =>{
+	// 	if(err){
+	// 		return res.send({status:false,meess:'error'});
+	// 	}
+	// 	else if (upload){
+	// 		return res.send({status:true,meess:'error'});
+	// 	}
+	// })
 	console.log('ert',product);
     product.save((err, save) => {
 		if (err) {
