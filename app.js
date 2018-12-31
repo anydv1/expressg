@@ -10,6 +10,7 @@ var logger = require('morgan');
 const multer = require('multer');
 
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -37,6 +38,17 @@ const fileStorage = multer.diskStorage({
   }
 });
 
+// const fileStorage = multer.diskStorage({
+//   destination: '/images',
+//   filename: function (req, file, callback) {
+//     rypto.pseudoRandomBytes(16, function(err, raw) {
+//       if (err) return callback(err);
+    
+//       callback(null, raw.toString('hex') + path.extname(file.originalname));
+//     });
+//   }
+// });
+
 const fileFilter = (req, file, cb) => {
   if (
     file.mimetype === 'image/png' ||
@@ -57,7 +69,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+// app.use(fileupload());
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
 );

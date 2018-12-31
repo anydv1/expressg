@@ -14,8 +14,8 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <main>
-<form >
-<div class="form control">
+<form class="login-form" action="/signup" method="POST">
+<div class="form control" >
 <h1>Sign Up</h1>
 <p>Please fill in this form to create an account.</p>
 <hr>
@@ -45,15 +45,13 @@
 </div>
 
 <div class="clearfix">
-  <button type="button" class="btn" >Sign Up</button>
+  <button type="submit" class="btn" >Sign Up</button>
 </div>
 </div>
 </form>
 </main>
 
   </body>
-  <script src = "../javascripts/adminauth.js"> </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 
 </html>

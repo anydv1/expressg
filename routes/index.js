@@ -51,7 +51,7 @@ router.get('/admin/add-product',function(req, res, next) {
   res.render('./admin/add-product', { title: 'Add Product' });
 });
 
-router.post('/admin/add-product',addapi.addProduct);   
+router.post('/admin/add-product', addapi.addProduct );   
 
 router.get('/admin/edit-product',function(req, res, next) {
   Product.find(function(err,docs){

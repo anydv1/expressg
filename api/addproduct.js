@@ -2,17 +2,14 @@ var Product  = require('../models/product.js');
 var User  = require('../models/user.js');
 
 addProduct=(req, res) =>{
-    console.log('1234567',image)
 
-		var product = new Product({
-	
-    title: req.body.title,
-	image    : req.file,
+	var product = new Product({
+	title: req.body.title,
+	image    : req.body.image,
     price: req.body.price,
 	description: req.body.description
 						
 	})
-	console.log('wqq',image);
 	console.log('ert',product);
     product.save((err, save) => {
 		if (err) {
