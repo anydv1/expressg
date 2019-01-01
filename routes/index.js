@@ -8,7 +8,7 @@ var editapi = require('../api/editproduct');
 var fetchapi = require('../api/fetchproduct');
 var adminsignapi = require('../api/adminsignup');
 var adminloginapi = require('../api/adminlogin');
-
+var logoutapi = require('../api/adminlogout');
 var authcontroller = require('../controllers/auth');
 var admincontroller = require('../controllers/admin');
 
@@ -81,6 +81,7 @@ router.post('/admin/edit-product', admincontroller.posteditProducts);
 // router.get('/admin/edit-product',admincontroller.geteditProducts );
 
 
+router.post('/admin/logout', logoutapi.logOut);
 
 
 router.post('/delete',authcontroller.postDelete );

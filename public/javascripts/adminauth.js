@@ -67,5 +67,20 @@ function  adminlogin(){
     }
 
 
+function lout(){
 
+    console.log("logging out");
+    axios.post('/admin/logout').then((res)=>{
+        console.log('v!!!!!!!!!!!!',res.doc)
+        
+       localStorage.setItem("jwtToken", '');
+             window.location = "/admin/login";
+           
+
+    
+            
+     }).catch((err)=>{
+        console.log('can not logout',err)
+     }); 
+}
 

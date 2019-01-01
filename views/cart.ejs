@@ -12,12 +12,28 @@
 <body>
         <%- include('./includes/navigation.ejs') %>
         <main>
-<p> welcome to your cart </p>
-
-<div class="cart-item-list">
-<div class="cart-item">
-        <h1> Product  Title- </h1>
-        <h1> Product Quantity - </h1>
+                <main>
+                       
+                            <ul class="cart__item-list">
+                        
+                                    <li class="cart__item">
+                                        <h1>Product Title- </h1>
+                                        <h2>Quantity - </h2>
+                                       
+                                    </li>
+                           
+                            </ul>
+                            <hr>
+                            <div class="centered">
+                                <form action="/create-order" method="POST">
+                                    <button type="submit" class="btn">Order Now!</button>
+                                </form>
+                            </div>
+                            
+                  
+                            <h1>No Products in Cart!</h1>
+                      
+                    </main>
            
 </div>
         
