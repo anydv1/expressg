@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%=  title%></title>
+    <title> Cart </title>
 
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/new.css' />
@@ -12,26 +12,33 @@
 <body>
         <%- include('./includes/navigation.ejs') %>
         <main>
-                <main>
+            <% if (products.length > 0) { %>
+
                        
                             <ul class="cart__item-list">
-                        
+                                <% products.forEach(p => { %>
                                     <li class="cart__item">
-                                        <h1>Product Title- </h1>
-                                        <h2>Quantity - </h2>
-                                       
+                                        <h1>Product Title- <%= p.productId.title %> </h1>
+                                        <h2>Quantity :<%= p.quantity %> </h2>
+                                     
+                                            <img src="/images/download.jpeg"
+                                                alt="<%= p.productId.title %>">
+                                    
                                     </li>
                            
                             </ul>
                             <hr>
                             <div class="centered">
                                 <form action="/create-order" method="POST">
-                                    <button type="submit" class="btn">Order Now!</button>
+                                    <button type="submit" class="btn">Confirm Order Now!</button>
                                 </form>
+                                <% }) %>
                             </div>
                             
                   
-                            <h1>No Products in Cart!</h1>
+                            <% } else { %>
+                                <h1>No Products in Cart!</h1>
+                            <% } %>
                       
                     </main>
            

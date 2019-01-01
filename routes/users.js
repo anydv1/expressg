@@ -35,10 +35,10 @@ router.get('/login',authcontroller.getLogin);
 
 
 
-router.get('/cart', function(req, res, next) {
-  res.render('cart', { title: 'User Cart' });
+// router.get('/cart', function(req, res, next) {
+//   res.render('cart', { title: 'User Cart' });
 
-});
+// });
 
 
 

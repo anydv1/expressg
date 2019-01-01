@@ -11,6 +11,8 @@ var adminloginapi = require('../api/adminlogin');
 var logoutapi = require('../api/adminlogout');
 var authcontroller = require('../controllers/auth');
 var admincontroller = require('../controllers/admin');
+var shopcontroller = require('../controllers/shop');
+
 
 
 /* GET home page. */
@@ -85,6 +87,11 @@ router.post('/admin/logout', logoutapi.logOut);
 
 
 router.post('/delete',authcontroller.postDelete );
+
+ router.get('/cart', shopcontroller.getCart);
+
+ router.post('/cart', shopcontroller.postCart);
+ router.post('/create-order',shopcontroller.postOrder);
 
 
 module.exports = router;

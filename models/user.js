@@ -18,8 +18,7 @@ psw: {
   },
 pswcnfrm:{
 type:String
-
-  }
+ }
 });
 var user = mongoose.model('User', userSchema)
 module.exports = user;
