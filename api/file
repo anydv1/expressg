@@ -1,0 +1,51 @@
+var fs = require('fs');
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
+var Agent = require('../../model/agentInformation');
+var empty = require("is-empty");
+
+var playerProfilePic = ((req, res) => {
+
+   var email = req.body.email;
+
+   if (empty(email)) {
+       console.log("email is not present", email);
+       return res.send({ status: false, mess: "Some mistake is there in 'email'" });
+   }
+
+   Agent.findOne({ email: email }).then((agent) => {
+       var format = '';
+       var path = '';
+       if (agent) {
+           fs.readFile(req.files.pic.path, function (err, data) {
+               // console.log('read file ', err, data, req.files.pic)
+               var splitstring = req.files.pic.originalFilename.split(".");
+               var len = splitstring.length;
+               format = splitstring[len - 1];
+               var dirname = "/home/ubuntu/winappBackend";
+               var newPath = './public/images/agentpics/' + agent._id + '.jpg';
+               path = '/images/agentpics/' + agent._id + '.jpg';
+               fs.writeFile(newPath, data, function (err) {
+                   if (err) {
+                       res.json({ status: false, mess: "Error" });
+                   }
+               });
+               agent.profilePic = path;
+               agent.save((err) => {
+                   if (err) {
+                       console.log("error", err)
+                       return res.json({ status: false, mess: "Image not set" })
+                   }
+                   return res.json({ status: true, mess: "Image saved" })
+               })
+           })
+       } else {
+           return res.json({ status: false, mess: "Email Id not found" })
+       }
+   }).catch((err) => {
+       console.log("AGENT PROFILE PIC ERROR", err);
+       return res.json({ status: false, mess: err })
+   })
+})
+
+module.exports = playerProfilePic;

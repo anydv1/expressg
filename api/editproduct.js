@@ -1,5 +1,8 @@
 var Product  = require('../models/product.js');
 var User  = require('../models/user.js');
+var jwt = require('jsonwebtoken');
+var JWTSECRET ='qwerty'
+
 
 editProducts=(req, res) =>{
     console.log('1234567',req.body)

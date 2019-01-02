@@ -1,5 +1,8 @@
 var Product= require('../models/product')
 
+var jwt = require('jsonwebtoken');
+var JWTSECRET ='qwerty'
+
 fetchProducts = ((req, res)=>{
     // console.log('ggvhvh',req.currentUser)
     //{userId :req.currentUser._id}

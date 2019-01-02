@@ -17,7 +17,8 @@ psw: {
     required: true
   },
 pswcnfrm:{
-type:String
+type:String,
+
  }
 });
 var user = mongoose.model('User', userSchema)

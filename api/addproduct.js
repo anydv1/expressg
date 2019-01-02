@@ -1,15 +1,32 @@
 var Product  = require('../models/product.js');
 var User  = require('../models/user.js');
+var jwt = require('jsonwebtoken');
+var JWTSECRET ='qwerty'
+// var file = require('file-system');
+var fs = require('fs');
+
+
+
+
+
+
+
+
+
+
 
 addProduct=(req, res) =>{
-
-	var product = new Product({
+	console.log('qwerty',req.file);
+	console.log('dfcgvhbjjnj',req.user);
+	var image = image.name;
+	console.log('qwertyu',image.name);
+    var product = new Product({
 	title: req.body.title,
 	image    : req.file,
     price: req.body.price,
 	description: req.body.description,
-	isAuthenticated:req.session.isLoogedin
-						
+	
+ isAuthenticated:req.session.isLoogedin					
 	})
 	// upload(req,res,(err) =>{
 	// 	if(err){

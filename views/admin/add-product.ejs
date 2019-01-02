@@ -16,7 +16,7 @@
     <p>Welcome to <%= title %></p>
     <main>
        
-        <form class="product-form" enctype="multipart/form-data">
+        <form class="product-form" action="/admin/add-product" method="POST" enctype="multipart/form-data">
               
             <div class="form-control">
                 <label for="title">Title</label>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-control">
                     <label for="image">Image</label>
-                 <input type="file" name="image" id="image"  >
+                 <input type="file" name="image" id="image" onchange="readURL(this)" >
                 </div>
             <div class="form-control">
                 <label for="price">Price</label>
@@ -34,7 +34,7 @@
                 <label for="description">Description</label>
                 <textarea name="description" id="description" rows="5"> </textarea>
             </div>
-          <button class="btn" type="button" onclick="addproducts()""> Add Product </button>
+          <button class="btn" type="submit" > Add Product </button>
     
         </form>
       
@@ -42,7 +42,7 @@
   </body>
   <script src = "../javascripts/addproduct.js"> </script>
   <script src = "../javascripts/adminauth.js"> </script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 </html>

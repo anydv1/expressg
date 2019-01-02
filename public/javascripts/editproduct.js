@@ -1,8 +1,11 @@
 function editproduct() {
+
+
     var updatedtitle = document.getElementById("title").value;
     var updatedimage = document.getElementById("image").value;
   var updatedprice = document.getElementById("price").value;
   var updateddescription=document.getElementById("description").value;
+  axios.defaults.headers.common['authorization'] = 'Bearer ' + localStorage.getItem('jwtToken');
 
 
   axios.post('/admin/edit-product', {

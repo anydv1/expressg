@@ -8,7 +8,9 @@ const productSchema = new Schema({
     required: true
   },
   image: {
-    type: String
+    type: String,
+    required: true
+
 
   },
   
@@ -22,7 +24,7 @@ type:String,
 required:true
 
   }
-  
+
 });
 var product = mongoose.model('Product', productSchema)
 module.exports = product;

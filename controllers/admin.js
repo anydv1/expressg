@@ -3,6 +3,59 @@ const bcrypt = require('bcryptjs');
 const Product = require('../models/product');
 const Usershop = require('../models/shopuser')
 
+const User = require('../models/user')
+
+
+
+exports.postAddProduct = (req, res, next) => {
+  const title = req.body.title;
+  const image = req.file;
+  const price = req.body.price;
+  const description = req.body.description;
+  
+  
+  console.log(image);
+
+
+
+  if (!image) {
+    return res.status(422).render('admin/add-product', {
+      pageTitle: 'Add Product',
+      path: '/admin/add-product',
+      product: {
+        title: title,
+        price: price,
+        description: description
+      }
+    });
+  }
+
+  const imageUrl = image.path;
+  console.log('eeeeeeeeeeeeee',req.currentUser);
+
+  const product = new Product({
+  title: title,
+  price: price,
+  description: description,
+  image: imageUrl
+  });
+  product
+    .save()
+    .then(result => {
+      // console.log(result);
+      console.log('Created Product');
+      res.redirect('/products');
+    })
+    .catch(err => {
+  
+    console.log(err);
+    });
+};
+
+
+
+
+
 
 exports.geteditProducts=(req,res,next) =>{
     const prodId = req.body._id;

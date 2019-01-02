@@ -41,19 +41,19 @@ const fileStorage = multer.diskStorage({
   }
 });
 
-// const fileFilter = (req, file, cb) => {
-//   if (
-//     file.mimetype === 'image/png' ||
-//     file.mimetype === 'image/jpg' ||
-//     file.mimetype === 'image/jpeg'
-//   ) {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-// };
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
-app.use(multer({ storage: fileStorage }).single('image'));
+app.use(multer({ storage: fileStorage , fileFilter: fileFilter}).single('image'));
 
 
 
@@ -88,7 +88,7 @@ app.use((req, res, next) => {
   }
   app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.isLoggedIn;
-    //res.locals.csrfToken = req.csrfToken();
+  
     next();
   });
 

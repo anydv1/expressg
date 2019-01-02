@@ -57,6 +57,11 @@ shopuserSchema.methods.addToCart = function(product) {
   return this.save();
 };
 
+shopuserSchema.methods.clearCart=function() {
+  this.cart = { items: [] };
+  return this.save();
+
+};
 
 var shopuser = mongoose.model('ShopUser', shopuserSchema)
 module.exports = shopuser;

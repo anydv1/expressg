@@ -6,7 +6,7 @@ function adminsign(){
     var psw = document.getElementById("psw").value;
     var pswcnfrm=document.getElementById("pswcnfrm").value;
        console.log('123456ty7uioo',name,email);
-      //  axios.defaults.headers.common['authorization'] = 'Bearer ' + localStorage.getItem('jwtToken');
+        axios.defaults.headers.common['authorization'] = 'Bearer ' + localStorage.getItem('jwtToken');
         
         axios.post('/admin/signup', {
        name:name,
@@ -57,7 +57,7 @@ function  adminlogin(){
                if (typeof(Storage) !== "undefined") 
                {
                 localStorage.setItem("jwtToken", res.data.token);
-                  window.location = '/admin/add-product'
+                  window.location = '/products'
                }
           
      }).catch((e)=>{
@@ -67,19 +67,38 @@ function  adminlogin(){
     }
 
 
-function lout(){
 
-    console.log("logging out");
-    axios.post('/admin/logout').then((res)=>{
-        console.log('v!!!!!!!!!!!!',res.doc)
-        
-       localStorage.setItem("jwtToken", '');
-             window.location = "/admin/login";
-           
 
+    function DeleteCookies() {
+        console.log( 'this is running' );
     
-            
-     }).catch((err)=>{
+        //Use old date to expire the cookies
+        let expire = 'expires=Thu, 01 Jan 1970 00:00:00 GMT;'
+    
+        //Split each cookie into an array element.
+        let cookiesArray = document.cookie.split(";");
+    
+        //Split the cookie to have name as the first value.
+        //Then use the cookie's name to expire the cookie.
+        for ( let cookie = 0; cookie < cookiesArray.length; cookie++ ) {
+            let name = cookiesArray[cookie].split( "=" )[0];
+            document.cookie = name + "=;" + expire;
+        }
+    
+    }
+
+function lout(){
+console.log("logging out");
+    // axios.post('/admin/logout').then((res)=>{
+        // console.log('v!!!!!!!!!!!!',res.doc)
+        DeleteCookies();
+   localStorage.setItem("jwtToken", '');
+             window.location = "/shop";
+             console.log('!!!!!!!!!!',jwtToken)
+        //    })
+           
+           
+           .catch((err)=>{
         console.log('can not logout',err)
      }); 
 }
