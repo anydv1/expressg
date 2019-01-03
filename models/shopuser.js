@@ -34,6 +34,8 @@ type:String
 }
 });
 
+
+
 shopuserSchema.methods.addToCart = function(product) {
   const cartProductIndex = this.cart.items.findIndex(cp => {
     return cp.productId.toString() === product._id.toString();
@@ -57,11 +59,25 @@ shopuserSchema.methods.addToCart = function(product) {
   return this.save();
 };
 
+
+
+
 shopuserSchema.methods.clearCart=function() {
   this.cart = { items: [] };
   return this.save();
 
 };
+
+
+
+ shopuserSchema.methods.removeFromCart = function(productId){
+  const updatedCartItems = this.cart.items.filter(item => {
+     return item.productId.quantity.toString() !== productId.quantity.toString();
+      });
+      this.cart.items = updatedCartItems;
+      return this.save();
+ };
+
 
 var shopuser = mongoose.model('ShopUser', shopuserSchema)
 module.exports = shopuser;

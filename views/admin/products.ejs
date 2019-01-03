@@ -9,7 +9,20 @@
     <link rel='stylesheet' href='/stylesheets/new.css' />
 </head>
 <body>
-        <%- include('../includes/adminnav.ejs') %>
+      
+    <div class="nav">
+        
+        <ul>
+              
+              <li><a href="/products">Products</a></li>
+               <li><a href="/admin/add-product">Add product</a></li>
+        
+              
+               <li> <button  onclick="lout()">Logout</button> </li>
+
+  
+        </ul>
+        </div>
         <main>
                 <div class="top"> 
                         <div class="leftmost">  </div>
@@ -22,7 +35,7 @@
                                     <h1 class="product__title"><%= product.title %></h1>
                                 </header>
                                 <div class="card__image">
-                                        <img src="/images/download.jpeg"
+                                        <img src="/<%= product.image%>"
                                             alt="<%= product.title %>">
                                     </div>
     

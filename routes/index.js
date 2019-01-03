@@ -174,7 +174,7 @@ router.post('/delete',authcontroller.postDelete );
  router.post('/create-order',shopcontroller.postOrder);
  router.get('/orders', isAuth, shopcontroller.getOrders);
 
-
+ router.post('/cart-delete-item', shopcontroller.postCartDeleteProduct);
 
 
 module.exports = router;

@@ -17,7 +17,7 @@ psw: {
     required: true
   },
 pswcnfrm:{
-type:String,
+type:String
 
  }
 });

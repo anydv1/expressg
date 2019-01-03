@@ -11,7 +11,31 @@
 
   <body >
     
-        <%- include('./includes/navigation.ejs') %>
+    <div class="nav">
+        
+        <ul>
+         
+          
+
+           <li><a href="/shop">Shop</a></li>
+        
+
+           <li><a href="/cart">Cart</a></li>
+       
+         
+    
+      
+           <li class="main-header__item">
+               <form action="/logout" method="post">
+                   <button type="submit" class="btn">Logout</button>
+               </form>
+           </li>
+
+ 
+
+
+        </ul>
+        </div>
 
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>

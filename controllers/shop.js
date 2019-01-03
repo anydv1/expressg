@@ -11,7 +11,7 @@ exports.getProducts = (req,res,next) => {
   var email= req.currentUser.email;
   console.log('swedrfgth',email);
   // User.findOne(email)
-  Product.findOne({email:req.currentUser.email})
+  Product.find()
   .then(products =>{
     // console.log('xdfcgvhb',req.currentUser.email);
     // console.log('xdfcgvhbfffffff',products.length);
@@ -21,26 +21,29 @@ res.render('./admin/products', {
      });
     })
      .catch(err => {
-       console.log(err);
+       console.log(err);z
      
   });
 
  };
 
 
-exports.getCart = (req, res, next) => {
+
+ exports.getCart = (req, res, next) => {
+   console.log('wwwwwwwww',req.user);
   req.user
     .populate('cart.items.productId')
     .execPopulate()
     .then(user => {
       const products = user.cart.items;
+   
       res.render('cart', {
         path: '/cart',
         title: 'Your Cart',
         products: products
-
       });
     })
+    // console.log('wertyuio',title)
     .catch(err => console.log(err));
 };
 
@@ -61,13 +64,25 @@ console.log(err);
 
 
 
+
+exports.postCartDeleteProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  req.user
+    .removeFromCart(prodId)
+    .then(result => {
+      res.redirect('/cart');
+    })
+    .catch(err => console.log(err));
+ };
+
+
 exports.postOrder = (req, res, next) => {
   req.user
     .populate('cart.items.productId')
     .execPopulate()
     .then(user => {
       const products = user.cart.items.map(i => {
-        return { quantity: i.quantity, product: { ...i.productId._doc } };
+        return { quantity: i.quantity, product: { ...i.productId.doc } };
       });
       const order = new Order({
         user: {

@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const fs = require('fs');
 
 const Product = require('../models/product');
 const Usershop = require('../models/shopuser')
@@ -83,11 +84,23 @@ exports.geteditProducts=(req,res,next) =>{
 // };
 
 
+const deleteFile = (filePath) =>{
+console.log('deleted');
+
+  fs.unlink(filePath,(err)=>{
+      if(err){
+          throw (err);
+      }
+  });
+}
+
+
+
 
 exports.posteditProducts = (req,res,next) => {
 var prodId = req.body.productId;
 var updatedTitle = req.body.title;
-var updatedImage = req.body.image;
+var image = req.file;
 var updatedPrice = req.body.price;
 var updatedDesc = req.body.description;
 
@@ -96,14 +109,17 @@ Product.findById(prodId)
   product.title = updatedTitle;
   product.price = updatedPrice;
   product.description = updatedDesc;
-  product.image= updatedImage;
+  if (image) {
+  deleteFile(product.image);
+    product.image = image.path;
+  }
   return product.save().then(result => {
     console.log('UPDATED PRODUCT!');
     res.redirect('/products');
   });
 })
 .catch(err => {
-  console.log('cant edited',err);
+  console.log('cant edit',err);
 });
 };
 

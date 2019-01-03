@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
@@ -14,7 +15,8 @@ adminLogin =(req, res)=>{
 		
 		if(doc)
 		{
-			if(psw==doc.psw)
+			// if(psw==doc.psw)
+			bcrypt.compare(psw,doc.psw)
 			{
 				var token = jwt.sign({id:doc.email},JWTSECRET);
 				doc.token=token
