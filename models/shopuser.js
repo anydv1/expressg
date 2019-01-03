@@ -42,7 +42,7 @@ shopuserSchema.methods.addToCart = function(product) {
   });
   let newQuantity = 1;
   const updatedCartItems = [...this.cart.items];
-
+  console.log(11111111111111,cartProductIndex);
   if (cartProductIndex >= 0) {
     newQuantity = this.cart.items[cartProductIndex].quantity + 1;
     updatedCartItems[cartProductIndex].quantity = newQuantity;
@@ -70,13 +70,18 @@ shopuserSchema.methods.clearCart=function() {
 
 
 
- shopuserSchema.methods.removeFromCart = function(productId){
-  const updatedCartItems = this.cart.items.filter(item => {
-     return item.productId.quantity.toString() !== productId.quantity.toString();
-      });
-      this.cart.items = updatedCartItems;
-      return this.save();
- };
+ 
+  shopuserSchema.methods.removeFromCart = function(productId){
+    const updatedCartItems = this.cart.items.filter(item => {
+       return item.productId.toString() !== productId.toString();
+        });
+        this.cart.items = updatedCartItems;
+        return this.save();
+   };
+
+
+
+
 
 
 var shopuser = mongoose.model('ShopUser', shopuserSchema)

@@ -1,6 +1,6 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
-const User = require('../models/user');
+const ShopUser = require('../models/shopuser');
 
 
 
@@ -30,7 +30,7 @@ res.render('./admin/products', {
 
 
  exports.getCart = (req, res, next) => {
-   console.log('wwwwwwwww',req.user);
+  //  console.log('wwwwwwwww',req.user);
   req.user
     .populate('cart.items.productId')
     .execPopulate()
@@ -67,14 +67,67 @@ console.log(err);
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  req.user
-    .removeFromCart(prodId)
-    .then(result => {
-      res.redirect('/cart');
-    })
-    .catch(err => console.log(err));
+const quantity =req.body.qty;
+// const index = req.user.cart.items.length-1;
+// console.log('eeeeeeeeee',index.productId);
+var cart =req.user.cart.items;
+// console.log("CART", cart)
+cart.forEach(element => {
+  console.log("ELEMENT", element)
+  
+  if(element.productId==prodId){
+    console.log('YES')
+    if(element.quantity>1){
+      element.quantity--;
+      console.log('WORKING',element.quantity);
+      req.user.save((err,save) => {
+        if(err){
+          console.log('ERROR',err)
+        }
+        else if(save){
+          console.log('SAVED Successfully');
+          res.redirect('/cart');
+        }
+      });
+    }else if(element.quantity == 1) {
+      console.log("ELEMENT LOCATION", cart.indexOf(element))
+      cart.splice(cart.indexOf(element),1)
+      console.log("CARTT", cart)
+      req.user.save((err,save) => {
+        if(err){
+          console.log('ERROR',err)
+        }
+        else if(save){
+          console.log('SAVED Successfully');
+       res.redirect('/cart');
+        }
+      });
+    
+    // return req.user.removeFromCart(prodId);
+  }
+}
+
+});
+//ShopUser.findOne({prodId:cart.index.productId})
+
+  // req.user
+  //   .updateCart(prodId)
+  //   .then(result => {
+  //     res.redirect('/cart');
+  //   })
+  //   .catch(err => console.log(err));
  };
 
+
+
+// exports.postCartDeleteProduct = (req,res,next) => {
+//   const prodId = req.body.productId;
+//  ShopUser.find()
+//  .then(
+
+
+//  ).catch();
+// };
 
 exports.postOrder = (req, res, next) => {
   req.user

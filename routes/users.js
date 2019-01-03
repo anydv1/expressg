@@ -9,19 +9,7 @@ var authcontroller = require('../controllers/auth');
 
 
 
-/* GET users listing. */
-// router.get('/users/login', function(req, res, next) {
-//   res.render('/login', { title: 'User Login' });
-// });
-// router.post('/users/login', function(req, res, next) {
-//   res.render('/login', { title: 'User Login' });
-// });
 
-
-// router.get('/signup', function(req, res, next) {
-//   res.render('usersignup', { title: 'New User Registration' });
-
-// });
 
 
 
@@ -35,10 +23,7 @@ router.get('/login',authcontroller.getLogin);
 
 
 
-// router.get('/cart', function(req, res, next) {
-//   res.render('cart', { title: 'User Cart' });
 
-// });
 
 
 
